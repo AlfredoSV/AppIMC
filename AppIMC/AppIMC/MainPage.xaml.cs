@@ -21,11 +21,18 @@ namespace AppIMC
             var altura = Altura.Text;
             decimal imc;
 
-            if (!String.IsNullOrEmpty(peso) || !String.IsNullOrEmpty(altura))
+            if (!String.IsNullOrEmpty(peso) && !String.IsNullOrEmpty(altura))
             {
-                imc = Decimal.Parse(peso) / (Decimal.Parse(altura)/100);
+                imc = Math.Round((Decimal.Parse(peso) / (Decimal.Parse(altura)/100)),2);
 
-                Imc.Text = Math.Round((imc),2).ToString();
+                Imc.Text =(imc).ToString();
+
+                if (imc < (Decimal)18.5)
+                {
+                    DisplayAlert("Resultado", "Bajo peso", "Ok");
+
+                }
+
             }
             else
             {
